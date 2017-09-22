@@ -7,8 +7,8 @@ from kombu import Connection
 
 class CatcherService(SocketServer.BaseRequestHandler):
     NAME = 'Catcher'
-    KOMBU_URI = None
-    KOMBU_Q = "syslog-catch"
+    KOMBU_URI = "redis://127.0.0.1:6379"
+    KOMBU_Q = "mystified-catcher"
     SYSLOG_MSG_TYPE = {
         0: "EMERGENCY",
         1: "ALERT",

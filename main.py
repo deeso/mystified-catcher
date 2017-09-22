@@ -1,4 +1,4 @@
-from syslog_catcher.catcher import CatcherService as Catcher
+from mystified.catcher import CatcherService as Catcher
 import logging
 import argparse
 
