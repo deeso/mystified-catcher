@@ -12,7 +12,7 @@ setup(name='mystified-catcher',
       description=DESC,
       author='adam pridgen',
       author_email='dso@thecoverofnight.com',
-      install_requires=['kombu', 'redis'],
+      install_requires=['kombu', 'redis', 'tzlocal', 'pytz'],
       packages=find_packages('src'),
       package_dir={'': 'src'},
 )

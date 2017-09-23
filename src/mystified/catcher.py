@@ -2,6 +2,9 @@ import logging
 import SocketServer
 import sys
 import json
+
+from tzlocal import get_localzone
+from datetime import datetime
 from kombu import Connection
 
 
@@ -53,6 +56,10 @@ class CatcherService(SocketServer.BaseRequestHandler):
         except:
             raise
 
+    @classmethod
+    def get_tz(cls):
+        return get_localzone()
+
     def handle(self):
         logging.debug("Handling syslog message")
         data = bytes.decode(self.request[0].strip())
@@ -60,7 +67,8 @@ class CatcherService(SocketServer.BaseRequestHandler):
         host = self.client_address[0]
         json_msg = {'syslog_msg': data,
                     'syslog_host': host,
-                    'catcher_name': self.NAME}
+                    'catcher_name': self.NAME,
+                    'catcher_tz': self.get_tz()}
         if self.KOMBU_URI is None:
             return
 
