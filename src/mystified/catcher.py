@@ -58,7 +58,7 @@ class CatcherService(SocketServer.BaseRequestHandler):
 
     @classmethod
     def get_tz(cls):
-        return get_localzone()
+        return str(get_localzone())
 
     def handle(self):
         logging.debug("Handling syslog message")
