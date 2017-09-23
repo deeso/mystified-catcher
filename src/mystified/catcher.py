@@ -20,9 +20,9 @@ class CatcherService(SocketServer.BaseRequestHandler):
         7: "DEBUG",
     }
 
-    def setup_logging(cls, log_level=logging.ALERT):
+    def setup_logging(cls, log_level=logging.DEBUG):
         fmt_str = '[%(asctime)s] %(name)s - %(levelname)s - %(message)s'
-        logging.getLogger().setLevel(logging.DEBUG)
+        logging.getLogger().setLevel(log_level)
         ch = logging.StreamHandler(sys.stdout)
         ch.setLevel(logging.DEBUG)
         formatter = logging.Formatter(fmt_str)
