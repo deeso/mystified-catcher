@@ -25,7 +25,7 @@ parser.add_argument('-log_level', type=int, default=logging.DEBUG, help=V)
 
 if __name__ == "__main__":
     args = parser.parse_args()
-    if args.broker is None:
+    if args.broker_uri is None:
         raise Exception("Must specify the uri for kombu")
     try:
         Catcher.setup_logging(args.log_level)
