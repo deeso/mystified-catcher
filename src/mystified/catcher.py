@@ -78,6 +78,6 @@ class CatcherService(SocketServer.BaseRequestHandler):
         logging.debug("Putting message in queue")
         with Connection(self.KOMBU_URI) as conn:
             q = conn.SimpleQueue(self.KOMBU_Q)
-            q.put(json.dumps(json_msg))
+            q.put(json_msg)
             q.close()
         logging.debug("Message handling done")
