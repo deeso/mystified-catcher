@@ -2,10 +2,11 @@ import logging
 import SocketServer
 import sys
 import json
+import os
 
 from tzlocal import get_localzone
-from datetime import datetime
 from kombu import Connection
+import Queue
 
 
 class CatcherService(SocketServer.BaseRequestHandler):
@@ -22,6 +23,7 @@ class CatcherService(SocketServer.BaseRequestHandler):
         6: "INFORMATIONAL",
         7: "DEBUG",
     }
+    MY_TZ = os.environ.get('CATCHER_TZ', 'NOT_SET')
 
     @classmethod
     def setup_logging(cls, log_level=logging.DEBUG):
