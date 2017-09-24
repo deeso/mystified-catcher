@@ -68,8 +68,10 @@ class CatcherService(SocketServer.BaseRequestHandler):
         data = bytes.decode(self.request[0].strip())
         # logging.debug("Resolving syslog message source")
         host = self.client_address[0]
+        syslog_server_ip = self.client_address[0]
         json_msg = {'syslog_msg': data,
-                    'catcher_host': host,
+                    'syslog_server_ip': syslog_server_ip,
+                    'catcher_host': "{}:{}".format(*self.server_address),
                     'catcher_name': self.NAME,
                     'catcher_tz': self.get_tz()}
         if self.KOMBU_URI is None:
